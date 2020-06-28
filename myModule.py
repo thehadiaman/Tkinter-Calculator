@@ -29,19 +29,19 @@ def equal(eqa):
     if '%' in eqa:
         e = eqa.split('%')
         x = (int(e[0])*int(e[1]))/100
-        return str(x)
+        return str(round(x, 7))
 
     elif 'sin' in eqa:
         e = int(eqa.split('sin(')[1].split(')')[0])
-        return math.sin(math.pi/(e/5))
+        return round(math.sin(math.pi/(e/5)), 7)
 
     elif 'cos' in eqa:
         e = int(eqa.split('cos(')[1].split(')')[0])
-        return math.cos(math.pi/(e/5))
+        return round(math.cos(math.pi/(e/5)), 7)
 
     elif 'tan' in eqa:
         e = int(eqa.split('tan(')[1].split(')')[0])
-        return math.tan(math.pi/(e/5))
+        return round(math.tan(math.pi/(e/5)), 7)
 
     else:
         List = []
@@ -66,7 +66,7 @@ def equal(eqa):
             x += a
         ans = eval(x)
 
-        return str(ans)
+        return str(round(ans, 7))
 
 
 def onedelete(equ):
