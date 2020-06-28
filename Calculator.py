@@ -16,7 +16,7 @@ def key(val):
 
 def clrone():
     global eq
-    e = onedelete(eq)
+    e = onedelete(eqa.get())
     tv.set(e)
     eq = e
 
@@ -56,11 +56,7 @@ def eql():
 
     try:
         x = equal(e)
-        if x == 'x':
-            tv.set('SYNTAX ERROR')
-            showinfo('Why this error?', 'This kind of features are not included in this version')
-        else:
-            tv.set(x)
+        tv.set(x)
     except:
         tv.set('SYNTAX ERROR')
         eq = ''
@@ -70,7 +66,7 @@ pwd = str(os.popen('pwd').read())
 
 
 def importEquation():
-    app.filename = fd.askopenfilename(initialdir=pwd, title="Select file",
+    app.filename = fd.askopenfilename(initialdir=pwd, title="Import Equation",
                                       filetypes=(("text files", "*.txt"), ("all files", "*.*")))
     try:
         with open(app.filename, 'r') as file:
@@ -82,7 +78,7 @@ def importEquation():
 
 
 def saveEquation():
-    app.filename = fd.asksaveasfilename(initialdir=pwd, title="Select file",
+    app.filename = fd.asksaveasfilename(initialdir=pwd, title="Save Equation",
                                       filetypes=(("text files", "*.txt"), ("all files", "*.*")))
     try:
         with open(app.filename, 'w+') as file:
@@ -110,15 +106,12 @@ filemenu.add_command(label="Close", command=app.quit)
 menubar.add_cascade(label="File", menu=filemenu)
 app.config(menu=menubar)
 
-
 tv = StringVar()
-eqa = Entry(app, border=20, width=14, bg='white', xscrollcommand=True, cursor='pencil',
-            justify='right', textvariable=tv)
+eqa = Entry(app, border=20, width=14, bg='white', cursor='pencil', xscroll=True, justify='right', textvariable=tv)
 eqa.place(x=0, y=0)
 eqa.config(fg='black')
 eqa['font'] = font.Font(size=30)
 eqa.icursor(0)
-
 
 base = Label(app)
 base.place(x=7, y=100)
