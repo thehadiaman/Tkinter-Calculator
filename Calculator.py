@@ -10,7 +10,7 @@ eq = ''
 
 def key(val):
     global eq
-    eq = eqa.get() + val
+    eq = (eqa.get() + val).replace('<', '')
     tv.set(eq)
 
 
@@ -52,7 +52,7 @@ def Octal():
 
 def eql():
     global eq
-    e = eqa.get()
+    e = eqa.get().replace('<', '')
 
     try:
         x = equal(e)
@@ -91,6 +91,7 @@ def angle(sign):
     global eq
     eq = eqa.get() + sign
     tv.set(eq)
+
 
 ###################################################################################################
 
@@ -172,7 +173,7 @@ eqa.bind("&", "no")
 eqa.bind("_", "no")
 eqa.bind("?", "no")
 eqa.bind(":", "no")
-eqa.bind("Shift-,", "no")
+eqa.bind("j", "no")
 eqa.bind(">", "no")
 eqa.bind("|", "no")
 eqa.bind("]", "no")
@@ -182,6 +183,7 @@ eqa.bind("}", "no")
 eqa.bind(";", "no")
 eqa.bind(",", "no")
 eqa.bind("'", "no")
+eqa.bind('"', "no")
 eqa.bind("~", "no")
 eqa.bind("`", "no")
 eqa.bind("\\", "no")
