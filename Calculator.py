@@ -1,222 +1,253 @@
-from tkinter import *
-import tkinter.font as font
-from tkinter.messagebox import *
-from logicModule import *
-
-######################################################################
-######################################################################
-
-cal = ''
-
-
-def btn(val):
-    global cal
-    cal += val
-    tv.set(cal)
+from myModule import *
+#################################################################################################
+app = Tk()
+app.title('Calculator')
+app.maxsize(width='394', height='452')
+app.minsize(width='394', height='452')
+##################################################################################################
+eq = ''
 
 
-def btn_eq():
-    global cal, ans
-    try:
-        ans = total(cal)
-        tv.set(ans)
-        cal = str(ans)
-        cal = ans
-    except SyntaxError:
-        showerror('SyntaxError', 'Need true mathematical equations')
-        cal = ''
+def key(val):
+    global eq
+    eq = eqa.get() + val
+    tv.set(eq)
+
+
+def clrone():
+    global eq
+    e = onedelete(eq)
+    tv.set(e)
+    eq = e
 
 
 def clr():
-    global cal
-    cal = ''
+    global eq
     tv.set('')
 
 
-def sqr():
-    global cal
+def Binary():
     try:
-        try:
-            n = sqR(cal)
-            tv.set(n)
-            cal = str(n)
-        except OverflowError:
-            showerror('OverflowError', 'This much numbers cause OverflowError')
-    except ValueError:
-        showerror('ValueError', 'Only numbers are allowed')
+        e = eval(eqa.get())
+        tv.set(bin(e)[2:])
+    except:
+        tv.set('SYNTAX ERROR')
 
 
-def sqrt():
-    global cal
+def Hexal():
     try:
-        n = sqRoot(cal)
-        tv.set(n)
-        cal = str(n)
-    except ValueError:
-        showerror('ValueError', 'Only numbers are allowed')
+        e = eval(eqa.get())
+        tv.set(hex(e)[2:])
+    except:
+        tv.set('SYNTAX ERROR')
 
 
-def binary():
-    global cal
+def Octal():
     try:
-        n = int(cal)
-        tv.set(toBinary(n))
-    except ValueError:
-        showerror('ValueError', 'Only numbers are allowed')
-    cal = ''
+        e = eval(eqa.get())
+        tv.set(oct(e)[2:])
+    except:
+        tv.set('SYNTAX ERROR')
 
 
-def hexa():
-    global cal
+def eql():
+    global eq
+    e = eqa.get()
+
     try:
-        n = int(cal)
-        tv.set(toHex(n))
-    except ValueError:
-        showerror('ValueError', 'Only numbers are allowed')
-    cal = ''
+        x = equal(e)
+        if x == 'x':
+            tv.set('SYNTAX ERROR')
+            showinfo('Why this error?', 'This kind of features are not included in this version')
+        else:
+            tv.set(x)
+    except:
+        tv.set('SYNTAX ERROR')
+        eq = ''
 
 
-def octa():
-    global cal
+pwd = str(os.popen('pwd').read())
+
+
+def importEquation():
+    app.filename = fd.askopenfilename(initialdir=pwd, title="Select file",
+                                      filetypes=(("text files", "*.txt"), ("all files", "*.*")))
     try:
-        n = int(cal)
-        tv.set(toOct(n))
-    except ValueError:
-        showerror('ValueError', 'Only numbers are allowed')
-    cal = ''
-
-###########################################################################################################
-###########################################################################################################
+        with open(app.filename, 'r') as file:
+            global eq
+            eq = file.read()
+            tv.set(eq)
+    except:
+        pass
 
 
-app = Tk()
-app.title('Calculator')
+def saveEquation():
+    app.filename = fd.asksaveasfilename(initialdir=pwd, title="Select file",
+                                      filetypes=(("text files", "*.txt"), ("all files", "*.*")))
+    try:
+        with open(app.filename, 'w+') as file:
+            file.write(str(eqa.get()))
+    except:
+        pass
+
+
+def angle(sign):
+    global eq
+    eq = eqa.get() + sign
+    tv.set(eq)
+
+###################################################################################################
+
+
+menubar = Menu(app)
+filemenu = Menu(menubar, tearoff=0)
+filemenu.add_command(label="Clear All", command=clr)
+filemenu.add_command(label="Import Equation", command=importEquation)
+filemenu.add_command(label="Save Equation", command=saveEquation)
+filemenu.add_command(label="About Me", command=about)
+filemenu.add_command(label="Close", command=app.quit)
+menubar.add_cascade(label="File", menu=filemenu)
+app.config(menu=menubar)
+
 
 tv = StringVar()
-equation = Entry(app, width=22, textvariable=tv)
-equation.place(x=0, y=10)
+eqa = Entry(app, border=20, width=14, bg='white', xscrollcommand=True, cursor='pencil',
+            justify='right', textvariable=tv)
+eqa.place(x=0, y=0)
+eqa.config(fg='black')
+eqa['font'] = font.Font(size=30)
+eqa.icursor(0)
 
 
-num1 = Button(app, text='1', width=2, height=2, command=lambda: btn('1'), activebackground="black",
-              activeforeground='white')
-num1.grid(column=1, row=2)
-num1['font'] = font.Font(size=20)
+base = Label(app)
+base.place(x=7, y=100)
 
-num2 = Button(app, text='2', width=2, height=2, command=lambda: btn('2'), activebackground="black",
-              activeforeground='white')
-num2.grid(column=2, row=2)
-num2['font'] = font.Font(size=20)
+key7 = Button(base, text='7', width=5, command=lambda: key('7'))
+key7.grid(column=0, row=0)
+key7['font'] = font.Font(size=15)
 
-num3 = Button(app, text='3', width=2, height=2, command=lambda: btn('3'), activebackground="black",
-              activeforeground='white')
-num3.grid(column=3, row=2)
-num3['font'] = font.Font(size=20)
+key8 = Button(base, text='8', width=5, command=lambda: key('8'))
+key8.grid(column=1, row=0)
+key8['font'] = font.Font(size=15)
 
-num4 = Button(app, text='4', width=2, height=2, command=lambda: btn('4'), activebackground="black",
-              activeforeground='white')
-num4.grid(column=1, row=3)
-num4['font'] = font.Font(size=20)
+key9 = Button(base, text='9', width=5, command=lambda: key('9'))
+key9.grid(column=2, row=0)
+key9['font'] = font.Font(size=15)
 
-num5 = Button(app, text='5', width=2, height=2, command=lambda: btn('5'), activebackground="black",
-              activeforeground='white')
-num5.grid(column=2, row=3)
-num5['font'] = font.Font(size=20)
+key4 = Button(base, text='4', width=5, command=lambda: key('4'))
+key4.grid(column=0, row=1)
+key4['font'] = font.Font(size=15)
 
-num6 = Button(app, text='6', width=2, height=2, command=lambda: btn('6'), activebackground="black",
-              activeforeground='white')
-num6.grid(column=3, row=3)
-num6['font'] = font.Font(size=20)
+key5 = Button(base, text='5', width=5, command=lambda: key('5'))
+key5.grid(column=1, row=1)
+key5['font'] = font.Font(size=15)
 
-num7 = Button(app, text='7', width=2, height=2, command=lambda: btn('7'), activebackground="black",
-              activeforeground='white')
-num7.grid(column=1, row=4)
-num7['font'] = font.Font(size=20)
+key6 = Button(base, text='6', width=5, command=lambda: key('6'))
+key6.grid(column=2, row=1)
+key6['font'] = font.Font(size=15)
 
-num8 = Button(app, text='8', width=2, height=2, command=lambda: btn('8'), activebackground="black",
-              activeforeground='white')
-num8.grid(column=2, row=4)
-num8['font'] = font.Font(size=20)
+key1 = Button(base, text='1', width=5, command=lambda: key('1'))
+key1.grid(column=0, row=2)
+key1['font'] = font.Font(size=15)
 
-num9 = Button(app, text='9', width=2, height=2, command=lambda: btn('9'), activebackground="black",
-              activeforeground='white')
-num9.grid(column=3, row=4)
-num9['font'] = font.Font(size=20)
+key2 = Button(base, text='2', width=5, command=lambda: key('2'))
+key2.grid(column=1, row=2)
+key2['font'] = font.Font(size=15)
 
-num0 = Button(app, text='0', width=2, height=2, command=lambda: btn('0'), activebackground="black",
-              activeforeground='white')
-num0.grid(column=1, row=5)
-num0['font'] = font.Font(size=20)
+key3 = Button(base, text='3', width=5, command=lambda: key('3'))
+key3.grid(column=2, row=2)
+key3['font'] = font.Font(size=15)
 
-dot = Button(app, text='.', width=2, height=2, command=lambda: btn('.'), activebackground="black",
-             activeforeground='white')
-dot.grid(column=2, row=5)
-dot['font'] = font.Font(size=20)
+dot = Button(base, text='.', width=5, command=lambda: key('.'))
+dot.grid(column=0, row=3)
+dot['font'] = font.Font(size=15)
 
-eql = Button(app, text='=', width=2, height=2, command=btn_eq, activebackground="black",
-             activeforeground='white')
-eql.grid(column=3, row=5)
-eql['font'] = font.Font(size=20)
+key0 = Button(base, text='0', width=5, command=lambda: key('0'))
+key0.grid(column=1, row=3)
+key0['font'] = font.Font(size=15)
 
-lab = Label(app, text=' ', width=2, height=2)
-lab.grid(column=4, row=1)
-lab['font'] = font.Font(size=20)
+clr = Button(base, text='CLR', width=5, command=clrone)
+clr.grid(column=2, row=3)
+clr['font'] = font.Font(size=15)
 
-btn_plus = Button(app, text='+', width=2, height=2, command=lambda: btn('+'), activebackground="black",
-                  activeforeground='white')
-btn_plus.grid(column=5, row=2)
-btn_plus['font'] = font.Font(size=20)
+space = Label(base)
+space.grid(column=3, row=1)
 
-btn_minus = Button(app, text='-', width=2, height=2, command=lambda: btn('-'), activebackground="black",
-                   activeforeground='white')
-btn_minus.grid(column=5, row=3)
-btn_minus['font'] = font.Font(size=20)
 
-btn_mul = Button(app, text='x', width=2, height=2, command=lambda: btn('x'), activebackground="black",
-                 activeforeground='white')
-btn_mul.grid(column=5, row=4)
-btn_mul['font'] = font.Font(size=20)
+add = Button(base, text='+', width=5, command=lambda: key('+'))
+add.grid(column=4, row=0)
+add['font'] = font.Font(size=15)
 
-btn_div = Button(app, text='÷', width=2, height=2, command=lambda: btn('÷'), activebackground="black",
-                 activeforeground='white')
-btn_div.grid(column=5, row=5)
-btn_div['font'] = font.Font(size=20)
+minus = Button(base, text='-', width=5, command=lambda: key('-'))
+minus.grid(column=4, row=1)
+minus['font'] = font.Font(size=15)
 
-clear = Button(app, text='CLR', width=2, height=2, command=clr, activebackground="black",
-               activeforeground='white')
-clear.grid(column=5, row=1)
-clear['font'] = font.Font(size=20)
+mul = Button(base, text='x', width=5, command=lambda: key('x'))
+mul.grid(column=4, row=2)
+mul['font'] = font.Font(size=15)
 
-lab2 = Label(app, text='')
-lab2.grid(column=1, row=6)
+div = Button(base, text='÷', width=5, command=lambda: key('÷'))
+div.grid(column=4, row=3)
+div['font'] = font.Font(size=15)
 
-sqr = Button(app, text='X²', width=2, height=2, command=sqr, activebackground="black",
-             activeforeground='white')
-sqr.grid(column=1, row=7)
-sqr['font'] = font.Font(size=20)
+base2 = Label(app)
+base2.place(x=7, y=260)
 
-sqrt = Button(app, text='√X', width=2, height=2, command=sqrt, activebackground="black",
-              activeforeground='white')
-sqrt.grid(column=2, row=7)
-sqrt['font'] = font.Font(size=20)
+bra_f = Button(base2, text='(', width=5, command=lambda: key('('))
+bra_f.grid(column=0, row=0)
+bra_f['font'] = font.Font(size=15)
 
-powN = Button(app, text='X^n', width=2, height=2, command=lambda: btn('^'), activebackground="black",
-              activeforeground='white')
-powN.grid(column=3, row=7)
-powN['font'] = font.Font(size=20)
+bra_l = Button(base2, text=')', width=5, command=lambda: key(')'))
+bra_l.grid(column=1, row=0)
+bra_l['font'] = font.Font(size=15)
 
-binary = Button(app, text='bin', width=2, height=2, command=binary, activebackground="black",
-                activeforeground='white')
-binary.grid(column=1, row=8)
-binary['font'] = font.Font(size=20)
+per = Button(base2, text='%', width=5, command=lambda: key('%'))
+per.grid(column=2, row=0)
+per['font'] = font.Font(size=15)
 
-hexa = Button(app, text='hex', width=2, height=2, command=hexa, activebackground="black",
-              activeforeground='white')
-hexa.grid(column=2, row=8)
-hexa['font'] = font.Font(size=20)
+sqr = Button(base2, text='X²', width=5, command=lambda: key('²'))
+sqr.grid(column=0, row=1)
+sqr['font'] = font.Font(size=15)
 
-octa = Button(app, text='oct', width=2, height=2, command=octa, activebackground="black",
-              activeforeground='white')
-octa.grid(column=3, row=8)
-octa['font'] = font.Font(size=20)
+sqRoot = Button(base2, text='√X', width=5, command=lambda: key('√('))
+sqRoot.grid(column=1, row=1)
+sqRoot['font'] = font.Font(size=15)
+
+sqrN = Button(base2, text='^', width=5, command=lambda: key('^'))
+sqrN.grid(column=2, row=1)
+sqrN['font'] = font.Font(size=15)
+
+sin = Button(base2, text='sin', width=5, command=lambda: angle('sin('))
+sin.grid(column=0, row=2)
+sin['font'] = font.Font(size=15)
+
+cos = Button(base2, text='cos', width=5, command=lambda: angle('cos('))
+cos.grid(column=1, row=2)
+cos['font'] = font.Font(size=15)
+
+tan = Button(base2, text='tan', width=5, command=lambda: angle('tan('))
+tan.grid(column=2, row=2)
+tan['font'] = font.Font(size=15)
+
+
+binary = Button(base2, text='Binary', width=5, command=Binary)
+binary.grid(column=0, row=3)
+binary['font'] = font.Font(size=15)
+
+Hexal = Button(base2, text='Hexal', width=5, command=Hexal)
+Hexal.grid(column=1, row=3)
+Hexal['font'] = font.Font(size=15)
+
+octal = Button(base2, text='Octal', width=5, command=Octal)
+octal.grid(column=2, row=3)
+octal['font'] = font.Font(size=15)
+
+space = Label(base2)
+space.grid(column=3, row=0)
+
+eql = Button(app, text='=', height=5, width=5, command=eql)
+eql.place(x=292, y=260)
+eql['font'] = font.Font(size=15)
 
 app.mainloop()
+
