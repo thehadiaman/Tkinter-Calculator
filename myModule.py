@@ -81,3 +81,13 @@ def onedelete(equ):
     length = len(equ)
     return equ[0: length-1]
 
+
+def credit():
+    app = Tk()
+    app.title('Credit')
+    app.geometry('620x100')
+    l = Label(app, text='''This is my first project on python tkinter I tried to make it better,there is only one organization\ni give all the credit to That is CROSS_ROAD and the motive behind the project is to accept and\ncomplete the challenge of our teacher Nikhil sir''', justify=LEFT)
+    l.place(x=0, y=0)
+
+    app.mainloop()
+
