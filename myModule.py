@@ -25,10 +25,33 @@ def about():
     app.mainloop()
 
 
-def equal(eqa):
+def equal(z):
+    global eqa
+    List = []
+    x = 0
+    for a in z:
+        if a == '÷':
+            List.insert(x, '/')
+        elif a == '^':
+            List.insert(x, '**')
+        elif a == 'x':
+            List.insert(x, '*')
+        elif a == '²':
+            List.insert(x, '**2')
+        elif a == '√':
+            List.insert(x, 'math.sqrt')
+        else:
+            List.insert(x, a)
+    List.reverse()
+
+    x = ''
+    for a in List:
+        x += a
+    eqa = x
+
     if '%' in eqa:
         e = eqa.split('%')
-        x = (int(e[0])*int(e[1]))/100
+        x = (eval(e[0])*eval(e[1]))/100
         return str(round(x, 7))
 
     elif 'sin' in eqa:
@@ -43,30 +66,8 @@ def equal(eqa):
         e = int(eqa.split('tan(')[1].split(')')[0])
         return round(math.tan(math.pi/(e/5)), 7)
 
-    else:
-        List = []
-        x = 0
-        for a in eqa:
-            if a == '÷':
-                List.insert(x, '/')
-            elif a == '^':
-                List.insert(x, '**')
-            elif a == 'x':
-                List.insert(x, '*')
-            elif a == '²':
-                List.insert(x, '**2')
-            elif a == '√':
-                List.insert(x, 'math.sqrt')
-            else:
-                List.insert(x, a)
-        List.reverse()
-
-        x = ''
-        for a in List:
-            x += a
-        ans = eval(x)
-
-        return str(round(ans, 7))
+    res = eval(x)
+    return str(round(res, 7))
 
 
 def onedelete(equ):
@@ -126,5 +127,4 @@ def bracket(x):
         return z
     else:
         return zz
-
 

@@ -328,4 +328,3 @@ eql.place(x=292, y=260)
 eql['font'] = font.Font(size=15)
 
 app.mainloop()
-
