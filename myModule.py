@@ -1,6 +1,7 @@
 from tkinter import *
 import math
 from tkinter import font
+from tkinter import filedialog
 from tkinter import filedialog as fd
 from tkinter.messagebox import *
 import os
@@ -79,8 +80,51 @@ def credit():
     app = Tk()
     app.title('Credit')
     app.geometry('620x100')
-    l = Label(app, text='This is my first project on python tkinter I tried to make it better,there is only one organization\ni give all the credit to That is CROSS_ROAD and the motive behind the project is to accept and\ncomplete the challenge of our teacher Nikhil sir', justify=LEFT)
+    l = Label(app, text='This is my first project on python tkinter I tried to make it better,there is only one organiz'
+                        'ation\ni give all the credit to That is CROSS_ROAD and the motive behind the project is to acc'
+                        'ept and\ncomplete the challenge of our teacher Nikhil sir', justify=LEFT)
     l.place(x=0, y=0)
 
     app.mainloop()
+
+
+def root(x):
+    flag = 0
+    if '√' in x:
+        for a in range(0, 9):
+            w = ''
+            w = str(a)+'√'
+            if w in x:
+                z = x.replace(w, w[0]+'x√')
+                flag = 1
+            else:
+                zz = x
+    else:
+        zz = x
+
+    if flag == 1:
+        return z
+    else:
+        return zz
+
+
+def bracket(x):
+    flag = 0
+    if '(' in x:
+        for a in range(0, 9):
+            w = ''
+            w = str(a)+'('
+            if w in x:
+                z = x.replace(w, w[0]+'x(')
+                flag = 1
+            else:
+                zz = x
+    else:
+        zz = x
+
+    if flag == 1:
+        return z
+    else:
+        return zz
+
 

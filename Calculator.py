@@ -10,7 +10,7 @@ eq = ''
 
 def key(val):
     global eq
-    eq = (eqa.get() + val).replace('<', '')
+    eq = (eqa.get() + val).replace('<', '').replace(' ', '')
     tv.set(eq)
 
 
@@ -27,6 +27,7 @@ def clr():
 
 
 def Binary():
+
     try:
         e = eval(eqa.get())
         tv.set(bin(e)[2:])
@@ -52,14 +53,18 @@ def Octal():
 
 def eql():
     global eq
-    e = eqa.get().replace('<', '')
+    x = eqa.get().replace('<', '').replace(' ', '')
+    e = bracket(root(x))
 
-    try:
-        x = equal(e)
-        tv.set(x)
-    except:
-        tv.set('SYNTAX ERROR')
-        eq = ''
+    if e == '':
+        tv.set('')
+    else:
+        try:
+            x = equal(e)
+            tv.set(x)
+        except:
+            tv.set('SYNTAX ERROR')
+            eq = ''
 
 
 pwd = str(os.popen('pwd').read())
@@ -112,7 +117,6 @@ eqa = Entry(app, border=20, width=14, bg='white', cursor='pencil', xscroll=True,
 eqa.place(x=0, y=0)
 eqa.config(fg='black')
 eqa['font'] = font.Font(size=30)
-eqa.icursor(0)
 eqa.bind("<a>", "no")
 eqa.bind("<b>", "no")
 eqa.bind("<c>", "no")
@@ -187,6 +191,10 @@ eqa.bind('"', "no")
 eqa.bind("~", "no")
 eqa.bind("`", "no")
 eqa.bind("\\", "no")
+
+eqa.event_add('<<Copy>>', '<Control-c>')
+eqa.event_add('<<Paste>>', '<Control-v>')
+eqa.event_add('<<Cut>>', '<Control-x>')
 
 
 base = Label(app)
