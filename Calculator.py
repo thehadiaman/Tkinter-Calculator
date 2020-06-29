@@ -244,7 +244,7 @@ key0 = Button(base, text='0', width=5, command=lambda: key('0'))
 key0.grid(column=1, row=3)
 key0['font'] = font.Font(size=15)
 
-clr = Button(base, text='CLR', width=5, command=clrone)
+clr = Button(base, text='⌫', width=5, command=clrone)
 clr.grid(column=2, row=3)
 clr['font'] = font.Font(size=15)
 
