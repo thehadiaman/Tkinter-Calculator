@@ -4,8 +4,6 @@ from tkinter import font
 from tkinter import filedialog
 from tkinter import filedialog as fd
 from tkinter.messagebox import *
-import os
-
 
 def about():
     app = Tk()
