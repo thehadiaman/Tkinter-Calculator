@@ -49,6 +49,8 @@ def equal(z):
         x += a
     eqa = x
 
+
+
     if '%' in eqa:
         e = eqa.split('%')
         x = (eval(e[0])*eval(e[1]))/100
@@ -127,4 +129,5 @@ def bracket(x):
         return z
     else:
         return zz
+
 

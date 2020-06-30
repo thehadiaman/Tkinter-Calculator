@@ -2,8 +2,9 @@ from myModule import *
 #################################################################################################
 app = Tk()
 app.title('Calculator')
-app.maxsize(width='394', height='452')
-app.minsize(width='394', height='452')
+app.maxsize(width='394', height='470')
+app.minsize(width='394', height='470')
+app.config(bg='black')
 ##################################################################################################
 eq = ''
 
@@ -113,9 +114,13 @@ filemenu.add_command(label="Close", command=app.quit)
 menubar.add_cascade(label="File", menu=filemenu)
 app.config(menu=menubar)
 
+base3 = Label(app)
+base3.place(x=0, y=0)
+base3.config(bg='black')
+
 tv = StringVar()
-eqa = Entry(app, border=20, width=14, bg='white', cursor='pencil', xscroll=True, justify='right', textvariable=tv)
-eqa.place(x=0, y=0)
+eqa = Entry(base3, border=20, width=14, bg='white', cursor='pencil', xscroll=True, justify='right', textvariable=tv)
+eqa.grid(column=0, row=0)
 eqa.config(fg='black')
 eqa['font'] = font.Font(size=30)
 eqa.bind("<a>", "no")
@@ -193,13 +198,14 @@ eqa.bind("~", "no")
 eqa.bind("`", "no")
 eqa.bind("\\", "no")
 
-eqa.event_add('<<Copy>>', '<Control-c>')
-eqa.event_add('<<Paste>>', '<Control-v>')
-eqa.event_add('<<Cut>>', '<Control-x>')
 
+space0 = Label(base3)
+space0.grid(column=0, row=1)
+space0.config(bg='black')
 
-base = Label(app)
-base.place(x=7, y=100)
+base = Label(base3)
+base.grid(column=0, row=2)
+base.config(bg='black')
 
 key7 = Button(base, text='7', width=5, command=lambda: key('7'))
 key7.grid(column=0, row=0)
@@ -251,6 +257,7 @@ clr['font'] = font.Font(size=15)
 
 space = Label(base)
 space.grid(column=3, row=1)
+space.config(bg='black')
 
 
 add = Button(base, text='+', width=5, command=lambda: key('+'))
@@ -269,8 +276,13 @@ div = Button(base, text='÷', width=5, command=lambda: key('÷'))
 div.grid(column=4, row=3)
 div['font'] = font.Font(size=15)
 
-base2 = Label(app)
-base2.place(x=7, y=260)
+base0 = Label(base3)
+base0.grid(column=0, row=3)
+base0.config(bg='black')
+
+base2 = Label(base0)
+base2.grid(column=0, row=0)
+base2.config(bg='black')
 
 bra_f = Button(base2, text='(', width=5, command=lambda: key('('))
 bra_f.grid(column=0, row=0)
@@ -321,11 +333,13 @@ octal = Button(base2, text='Octal', width=5, command=Octal)
 octal.grid(column=2, row=3)
 octal['font'] = font.Font(size=15)
 
-space = Label(base2)
-space.grid(column=3, row=0)
+space2 = Label(base2)
+space2.grid(column=3, row=0)
+space2.config(bg='black')
 
-eql = Button(app, text='=', height=5, width=5, command=eql)
-eql.place(x=292, y=260)
+eql = Button(base0, text='=', height=6, width=5, command=eql)
+eql.grid(column=1, row=0)
 eql['font'] = font.Font(size=15)
 
 app.mainloop()
+
