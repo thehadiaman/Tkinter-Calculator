@@ -2,6 +2,7 @@ from myModule import *
 #################################################################################################
 app = Tk()
 app.title(get_app_title())
+app.geometry('0x0+500+150')
 app.maxsize(width='397', height='475')
 app.minsize(width='397', height='475')
 bg_color = get_bg_color()
@@ -119,6 +120,7 @@ menubar.add_cascade(label='File', menu=filemenu)
 
 config = Menu(menubar, tearoff=0)
 config.add_command(label='Set title', command=set_app_title)
+config.add_command(label='Set menubar color', command=None)
 config.add_command(label='Set background color', command=set_bg_color)
 config.add_command(label='Set display color', command=set_ebgcolor)
 config.add_command(label='Set color of button', command=set_bg_color_btn)
