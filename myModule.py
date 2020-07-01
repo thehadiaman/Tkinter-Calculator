@@ -1,9 +1,10 @@
 from tkinter import *
+from config import *
 import math
 from tkinter import font
-from tkinter import filedialog
 from tkinter import filedialog as fd
 from tkinter.messagebox import *
+##################################################################
 
 def about():
     app = Tk()
@@ -127,5 +128,4 @@ def bracket(x):
         return z
     else:
         return zz
-
 
