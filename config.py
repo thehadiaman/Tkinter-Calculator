@@ -2,6 +2,7 @@ from sqlite3 import *
 from tkinter import *
 from tkinter.messagebox import *
 from tkinter.colorchooser import *
+from sys import *
 ######################################################
 
 conn = connect('config.db')
