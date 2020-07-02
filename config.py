@@ -2,7 +2,7 @@ from sqlite3 import *
 from tkinter import *
 from tkinter.messagebox import *
 from tkinter.colorchooser import *
-from sys import *
+from tkinter.font import *
 ######################################################
 
 conn = connect('config.db')
@@ -24,10 +24,13 @@ except:
 
 def set_app_title():
     app = Tk()
-    app.maxsize(width='153', height='80')
-    app.minsize(width='153', height='80')
-    E = Entry(app)
+    app.title('Set title')
+    app.geometry('0x0+500+150')
+    app.maxsize(width='280', height='30')
+    app.minsize(width='280', height='30')
+    E = Entry(app, bg=get_ebgcolor())
     E.grid(column=0, row=0)
+    E['font'] = Font(size=50)
 
     def set_title():
         if E.get() == '':
@@ -40,7 +43,7 @@ def set_app_title():
                 conn.commit()
             except:
                 pass
-    Button(app, text='Set', command=set_title).grid(column=0, row=1)
+    Button(app, text='Set', command=set_title, bg=get_bg_color_btn(), fg=get_fg_color_btn()).grid(column=1, row=0)
     app.mainloop()
 
 
