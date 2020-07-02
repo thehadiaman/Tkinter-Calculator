@@ -4,6 +4,7 @@ import math
 from tkinter import font
 from tkinter import filedialog as fd
 from tkinter.messagebox import *
+from random import *
 ##################################################################
 
 def about():
@@ -39,6 +40,10 @@ def equal(z):
             List.insert(x, '**2')
         elif a == '√':
             List.insert(x, 'math.sqrt')
+        elif a == 'e':
+            List.insert(x, str(math.e))
+        elif a == 'π':
+            List.insert(x, str(math.pi))
         else:
             List.insert(x, a)
     List.reverse()
@@ -128,4 +133,43 @@ def bracket(x):
         return z
     else:
         return zz
+
+def pipi(x):
+    flag = 0
+    if 'π' in x:
+        for a in range(0, 9):
+            w = ''
+            w = str(a)+'π'
+            if w in x:
+                z = x.replace(w, w[0]+'xπ')
+                flag = 1
+            else:
+                zz = x
+    else:
+        zz = x
+
+    if flag == 1:
+        return z
+    else:
+        return zz
+
+def ee(x):
+    flag = 0
+    if 'e' in x:
+        for a in range(0, 9):
+            w = ''
+            w = str(a)+'e'
+            if w in x:
+                z = x.replace(w, w[0]+'xe')
+                flag = 1
+            else:
+                zz = x
+    else:
+        zz = x
+
+    if flag == 1:
+        return z
+    else:
+        return zz
+
 

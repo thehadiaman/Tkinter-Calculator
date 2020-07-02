@@ -3,8 +3,8 @@ from myModule import *
 app = Tk()
 app.title(get_app_title())
 app.geometry('0x0+500+150')
-app.maxsize(width='397', height='475')
-app.minsize(width='397', height='475')
+app.maxsize(width='397', height='520')
+app.minsize(width='397', height='520')
 bg_color = get_bg_color()
 app.config(bg=bg_color)
 ##################################################################################################
@@ -63,7 +63,7 @@ def Octal():
 def eql():
     global eq
     x = eqa.get().replace('<', '').replace(' ', '')
-    e = bracket(root(x))
+    e = bracket(root(pipi(ee(x))))
 
     if e == '':
         tv.set('')
@@ -104,11 +104,15 @@ def angle(sign):
     tv.set(eq)
 
 
+def Rand():
+    tv.set(eqa.get() + str(randrange(0, 9999999999)))
+
+
 ###################################################################################################
 
 
-menubar = Menu(app)
-filemenu = Menu(menubar, tearoff=0)
+menubar = Menu(app, bg=get_bg_menu(), activebackground=get_bg_color())
+filemenu = Menu(menubar, tearoff=0, bg=get_bg_menu(), activebackground=get_bg_color())
 filemenu.add_command(label='Clear All', command=clr)
 filemenu.add_command(label='Import Equation', command=importEquation)
 filemenu.add_command(label='Save Equation', command=saveEquation)
@@ -118,9 +122,9 @@ filemenu.add_separator()
 filemenu.add_command(label='Close', command=app.quit)
 menubar.add_cascade(label='File', menu=filemenu)
 
-config = Menu(menubar, tearoff=0)
+config = Menu(menubar, tearoff=0, bg=get_bg_menu(), activebackground=get_bg_color())
 config.add_command(label='Set title', command=set_app_title)
-config.add_command(label='Set menubar color', command=None)
+config.add_command(label='Set MenuBar color', command=set_bg_menu)
 config.add_command(label='Set background color', command=set_bg_color)
 config.add_command(label='Set display color', command=set_ebgcolor)
 config.add_command(label='Set color of button', command=set_bg_color_btn)
@@ -332,59 +336,75 @@ per = Button(base2, text='%', width=5, command=lambda: key('%'), bg=bg_color_btn
 per.grid(column=2, row=0)
 per['font'] = font.Font(size=15)
 
+pi = Button(base2, text='π', width=5, command=lambda: key('π'), bg=bg_color_btn, border=2, fg=fg_color_btn,
+             activebackground=activebackground_color, activeforeground=activeforeground_color)
+pi.grid(column=0, row=1)
+pi['font'] = font.Font(size=15)
+
+e = Button(base2, text='e', width=5, command=lambda: key('e'), bg=bg_color_btn, border=2, fg=fg_color_btn,
+             activebackground=activebackground_color, activeforeground=activeforeground_color)
+e.grid(column=1, row=1)
+e['font'] = font.Font(size=15)
+
+tan = Button(base2, text='Random', width=5, command=Rand, bg=bg_color_btn, border=2, fg=fg_color_btn,
+             activebackground=activebackground_color, activeforeground=activeforeground_color)
+tan.grid(column=2, row=1)
+tan['font'] = font.Font(size=15)
+
 sqr = Button(base2, text='X²', width=5, command=lambda: key('²'), bg=bg_color_btn, border=2, fg=fg_color_btn,
              activebackground=activebackground_color, activeforeground=activeforeground_color)
-sqr.grid(column=0, row=1)
+sqr.grid(column=0, row=2)
 sqr['font'] = font.Font(size=15)
 
 sqRoot = Button(base2, text='√X', width=5, command=lambda: key('√('), bg=bg_color_btn, border=2, fg=fg_color_btn,
                 activebackground=activebackground_color, activeforeground=activeforeground_color)
-sqRoot.grid(column=1, row=1)
+sqRoot.grid(column=1, row=2)
 sqRoot['font'] = font.Font(size=15)
 
 sqrN = Button(base2, text='^', width=5, command=lambda: key('^'), bg=bg_color_btn, border=2, fg=fg_color_btn,
               activebackground=activebackground_color, activeforeground=activeforeground_color)
-sqrN.grid(column=2, row=1)
+sqrN.grid(column=2, row=2)
 sqrN['font'] = font.Font(size=15)
 
 sin = Button(base2, text='sin', width=5, command=lambda: angle('sin('), bg=bg_color_btn, border=2, fg=fg_color_btn,
              activebackground=activebackground_color, activeforeground=activeforeground_color)
-sin.grid(column=0, row=2)
+sin.grid(column=0, row=3)
 sin['font'] = font.Font(size=15)
 
 cos = Button(base2, text='cos', width=5, command=lambda: angle('cos('), bg=bg_color_btn, border=2, fg=fg_color_btn,
              activebackground=activebackground_color, activeforeground=activeforeground_color)
-cos.grid(column=1, row=2)
+cos.grid(column=1, row=3)
 cos['font'] = font.Font(size=15)
 
 tan = Button(base2, text='tan', width=5, command=lambda: angle('tan('), bg=bg_color_btn, border=2, fg=fg_color_btn,
              activebackground=activebackground_color, activeforeground=activeforeground_color)
-tan.grid(column=2, row=2)
+tan.grid(column=2, row=3)
 tan['font'] = font.Font(size=15)
 
 
 binary = Button(base2, text='Binary', width=5, command=Binary, bg=bg_color_btn, border=2, fg=fg_color_btn,
                 activebackground=activebackground_color, activeforeground=activeforeground_color)
-binary.grid(column=0, row=3)
+binary.grid(column=0, row=4)
 binary['font'] = font.Font(size=15)
 
 Hexal = Button(base2, text='Hexal', width=5, command=Hexal, bg=bg_color_btn, border=2, fg=fg_color_btn,
                activebackground=activebackground_color, activeforeground=activeforeground_color)
-Hexal.grid(column=1, row=3)
+Hexal.grid(column=1, row=4)
 Hexal['font'] = font.Font(size=15)
 
 octal = Button(base2, text='Octal', width=5, command=Octal, bg=bg_color_btn, border=2, fg=fg_color_btn,
                activebackground=activebackground_color, activeforeground=activeforeground_color)
-octal.grid(column=2, row=3)
+octal.grid(column=2, row=4)
 octal['font'] = font.Font(size=15)
 
 space2 = Label(base2)
 space2.grid(column=3, row=0)
 space2.config(bg=bg_color)
 
-eql = Button(base0, text='=', height=6, width=5, command=eql, bg=bg_color_btn, border=2, fg=fg_color_btn,
+eql = Button(base0, text='=', height=8, width=5, command=eql, bg=bg_color_btn, border=2, fg=fg_color_btn,
              activebackground=activebackground_color, activeforeground=activeforeground_color)
 eql.grid(column=1, row=0)
 eql['font'] = font.Font(size=15)
 
 app.mainloop()
+
