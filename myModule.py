@@ -5,23 +5,31 @@ from tkinter import font
 from tkinter import filedialog as fd
 from tkinter.messagebox import *
 from random import *
+from sys import *
 ##################################################################
 
 def about():
     app = Tk()
     app.title('AboutMe')
-    app.geometry('270x110')
+    app.geometry('0x0+500+150')
+    app.maxsize(width='300', height='150')
+    app.minsize(width='300', height='150')
+    app.config(bg='#042000')
     l0 = Label(app, text='Hello, I am HADI AMAN. I am a student.')
     l0.place(x=5, y=10)
+    l0.config(bg='#042000')
     l1 = Label(app, text='Email     : hadiaman2.0@gmail.com')
     l1.place(x=5, y=30)
+    l1.config(bg='#042000')
     l2 = Label(app, text='Mobile    : 8281177057')
     l2.place(x=5, y=50)
+    l2.config(bg='#042000')
     l3 = Label(app, text='Instagram : _hadi.aman_')
     l3.place(x=5, y=70)
+    l3.config(bg='#042000')
     l4 = Label(app, text=':::Be my friend:::')
     l4.place(x=5, y=90)
-
+    l4.config(bg='#042000')
     app.mainloop()
 
 
@@ -86,12 +94,15 @@ def onedelete(equ):
 def credit():
     app = Tk()
     app.title('Credit')
-    app.geometry('620x100')
+    app.geometry('0x0+500+150')
+    app.maxsize(width='650', height='150')
+    app.minsize(width='650', height='150')
+    app.config(bg='#042000')
     l = Label(app, text='This is my first project on python tkinter I tried to make it better,there is only one organiz'
                         'ation\ni give all the credit to That is CROSS_ROAD and the motive behind the project is to acc'
                         'ept and\ncomplete the challenge of our teacher Nikhil sir', justify=LEFT)
     l.place(x=0, y=0)
-
+    l.config(bg='#042000')
     app.mainloop()
 
 
