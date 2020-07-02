@@ -3,8 +3,17 @@ from myModule import *
 app = Tk()
 app.title(get_app_title())
 app.geometry('0x0+500+150')
-app.maxsize(width='397', height='520')
-app.minsize(width='397', height='520')
+
+if platform == 'linux':
+    app.maxsize(width='397', height='520')
+    app.minsize(width='397', height='520')
+elif platform.startswith('win'):
+    app.maxsize(width='280', height='520')
+    app.minsize(width='280', height='520')
+else:
+    app.maxsize(width='355', height='520')
+    app.minsize(width='355', height='520')
+
 bg_color = get_bg_color()
 app.config(bg=bg_color)
 ##################################################################################################
@@ -140,8 +149,14 @@ base3.place(x=0, y=0)
 base3.config(bg=bg_color)
 
 tv = StringVar()
-eqa = Entry(base3, border=20, width=14, bg=ebgcolor, cursor='pencil', justify='left', textvariable=tv)
+eqa = Entry(base3, border=20, bg=ebgcolor, cursor='pencil', justify='left', textvariable=tv)
 eqa.grid(column=0, row=0)
+if platform == 'linux':
+    eqa.config(width=14)
+elif platform.startswith('win'):
+    eqa.config(width=10)
+else:
+    eqa.config(width=14)
 eqa.config(fg=bg_color, highlightbackground=bg_color)
 eqa['font'] = font.Font(size=30)
 eqa.bind('<a>', 'no')
