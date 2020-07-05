@@ -72,7 +72,7 @@ def Octal():
 def eql():
     global eq
     x = eqa.get().replace('<', '').replace(' ', '')
-    e = bracket(root(pipi(ee(x))))
+    e = bracket(root(pipi(ee(epi(x)))))
 
     if e == '':
         tv.set('')

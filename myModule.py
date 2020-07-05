@@ -6,6 +6,7 @@ from tkinter import filedialog as fd
 from tkinter.messagebox import *
 from random import *
 from sys import *
+from tkinter import ttk
 ##################################################################
 
 def about():
@@ -183,4 +184,10 @@ def ee(x):
     else:
         return zz
 
+
+def epi(x):
+    if 'eπ' in x:
+        return 'exπ'
+    elif 'πe' in x:
+        return 'πxe'
 
