@@ -14,9 +14,9 @@ else:
     app.maxsize(width='355', height='520')
     app.minsize(width='355', height='520')
 
+##################################################################################################
 bg_color = get_bg_color()
 app.config(bg=bg_color)
-##################################################################################################
 ebgcolor = get_ebgcolor()
 bg_color_btn = get_bg_color_btn()
 fg_color_btn = get_fg_color_btn()
@@ -72,7 +72,7 @@ def Octal():
 def eql():
     global eq
     x = eqa.get().replace('<', '').replace(' ', '')
-    e = bracket(root(pipi(ee(epi(x)))))
+    e = bracket(root(pipi(ee(epi(final(x))))))
 
     if e == '':
         tv.set('')
@@ -228,8 +228,7 @@ eqa.bind('{', 'no')
 eqa.bind('}', 'no')
 eqa.bind(';', 'no')
 eqa.bind(',', 'no')
-eqa.bind(''', 'no')
-eqa.bind(''', 'no')
+eqa.bind('\'', 'no')
 eqa.bind('~', 'no')
 eqa.bind('`', 'no')
 eqa.bind('\\', 'no')

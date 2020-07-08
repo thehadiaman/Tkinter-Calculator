@@ -6,8 +6,8 @@ from tkinter import filedialog as fd
 from tkinter.messagebox import *
 from random import *
 from sys import *
-from tkinter import ttk
 ##################################################################
+
 
 def about():
     app = Tk()
@@ -192,3 +192,59 @@ def epi(x):
         return 'πxe'
     else:
         return x
+
+def zeroError(x):
+    def startsWithZero(x):
+        while x.startswith('0'):
+            if x.startswith('0+'):
+                return x
+            else:
+                x = x[1:]
+        return x
+
+    def zeroSmash(x):
+        while '+0' in x:
+            x = x.replace('+0', '+')
+        while '-0' in x:
+            x = x.replace('-0', '-')
+        while 'x0' in x:
+            x = x.replace('x0', 'x')
+        while '/0' in x:
+            x = x.replace('/0', '/')
+        return x
+
+    def errorSmash(x):
+        list0 = ['x', '/']
+
+        for a in list0:
+            for b in list0:
+                while a+b in x:
+                    x = x.replace(a+b, a+'0'+b)
+        return x
+
+    return errorSmash(zeroSmash(startsWithZero(x)))
+
+
+def errortest(y):
+
+    x = y
+    x = y.replace('*', 'x')
+    x = y.replace('/', '÷')
+
+    list0 = ['x', '÷']
+
+    for a in list0:
+        for b in list0:
+            if a+b in x:
+                flag = 1
+                return 'error'
+            else:
+                flag = 0
+    if flag == 0:
+        return x
+
+
+
+def final(x):
+    return zeroError(errortest(x))
+
