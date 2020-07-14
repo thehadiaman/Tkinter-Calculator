@@ -150,6 +150,8 @@ def onedelete(equ):
         return equ.replace(equ[(len(equ)-7): (len(equ))], '')
     if equ[(len(equ)-7): (len(equ))] == 'tanh−¹(':
         return equ.replace(equ[(len(equ)-7): (len(equ))], '')
+    if equ[(len(equ)-2): (len(equ))] == '√(':
+        return equ.replace(equ[(len(equ)-2): (len(equ))], '')
 
     length = len(equ)
     return equ[0: length-1]
