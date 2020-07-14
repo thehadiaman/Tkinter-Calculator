@@ -124,8 +124,33 @@ def equal(z):
 
 
 def onedelete(equ):
-    if equ == 'SYNTAX ERROR':
+    if 'SYNTAX' in equ:
         return ''
+    if equ[(len(equ)-4): (len(equ))] == 'sin(':
+        return equ.replace(equ[(len(equ)-4): (len(equ))], '')
+    if equ[(len(equ)-4): (len(equ))] == 'cos(':
+        return equ.replace(equ[(len(equ)-4): (len(equ))], '')
+    if equ[(len(equ)-4): (len(equ))] == 'tan(':
+        return equ.replace(equ[(len(equ)-4): (len(equ))], '')
+    if equ[(len(equ)-6): (len(equ))] == 'sin−¹(':
+        return equ.replace(equ[(len(equ)-6): (len(equ))], '')
+    if equ[(len(equ)-6): (len(equ))] == 'cos−¹(':
+        return equ.replace(equ[(len(equ)-6): (len(equ))], '')
+    if equ[(len(equ)-6): (len(equ))] == 'tan−¹(':
+        return equ.replace(equ[(len(equ)-6): (len(equ))], '')
+    if equ[(len(equ)-5): (len(equ))] == 'sinh(':
+        return equ.replace(equ[(len(equ)-5): (len(equ))], '')
+    if equ[(len(equ)-5): (len(equ))] == 'cosh(':
+        return equ.replace(equ[(len(equ)-5): (len(equ))], '')
+    if equ[(len(equ)-5): (len(equ))] == 'tanh(':
+        return equ.replace(equ[(len(equ)-5): (len(equ))], '')
+    if equ[(len(equ)-7): (len(equ))] == 'sinh−¹(':
+        return equ.replace(equ[(len(equ)-7): (len(equ))], '')
+    if equ[(len(equ)-7): (len(equ))] == 'cosh−¹(':
+        return equ.replace(equ[(len(equ)-7): (len(equ))], '')
+    if equ[(len(equ)-7): (len(equ))] == 'tanh−¹(':
+        return equ.replace(equ[(len(equ)-7): (len(equ))], '')
+
     length = len(equ)
     return equ[0: length-1]
 
@@ -286,3 +311,73 @@ def errortest(y):
 def final(x):
     return zeroError(errortest(x))
 
+def ang(X):
+    def angsin(x):
+        flag = 0
+        if 'sin' in x:
+            for a in range(0, 9):
+                w = ''
+                w = str(a)+'sin'
+                if w in x:
+                    z = x.replace(w, w[0]+'xsin')
+                    flag = 1
+                else:
+                    zz = x
+        else:
+            zz = x
+
+        if flag == 1:
+            return z
+        else:
+            return zz
+
+    def angcos(x):
+        flag = 0
+        if 'cos' in x:
+            for a in range(0, 9):
+                w = ''
+                w = str(a)+'cos'
+                if w in x:
+                    z = x.replace(w, w[0]+'xcos')
+                    flag = 1
+                else:
+                    zz = x
+        else:
+            zz = x
+
+        if flag == 1:
+            return z
+        else:
+            return zz
+
+
+    def angtan(x):
+        flag = 0
+        if 'tan' in x:
+            for a in range(0, 9):
+                w = ''
+                w = str(a)+'tan'
+                if w in x:
+                    z = x.replace(w, w[0]+'xtan')
+                    flag = 1
+                else:
+                    zz = x
+        else:
+            zz = x
+
+        if flag == 1:
+            return z
+        else:
+            return zz
+
+    def angall(x):
+        L = ['s', 'c', 't', ')']
+        for a in L:
+            for b in L:
+                if a+b in x:
+                    x = x.replace(a+b, a+'x'+b)
+                else:
+                    x = x
+        return x
+
+    return angtan(angcos(angsin(angall(X))))
