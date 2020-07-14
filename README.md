@@ -18,12 +18,8 @@ I hope you can follow the instrctions, thank you
 ####################################################################################
 Libraries used
 
-math    :preinstalled in python
-
-tkinter :preinstalled in python
-
-random  :preinstalled in python
-
-sys     :preinstalled in python
-
+math    :preinstalled in python<br>
+tkinter :preinstalled in python<br>
+random  :preinstalled in python<br>
+sys     :preinstalled in python<br>
 numpy   :not preinstalled in python
