@@ -2,11 +2,11 @@ from myModule import *
 #################################################################################################
 app = Tk()
 app.title(get_app_title())
-app.geometry('0x0+500+150')
+app.geometry('0x0+500+15')
 
 if platform == 'linux':
-    app.maxsize(width='397', height='520')
-    app.minsize(width='397', height='520')
+    app.maxsize(width='397', height='640')
+    app.minsize(width='397', height='640')
 elif platform.startswith('win'):
     app.maxsize(width='280', height='520')
     app.minsize(width='280', height='520')
@@ -29,6 +29,7 @@ eq = ''
 def key(val):
     global eq
     eq = (eqa.get() + val).replace('<', '').replace(' ', '')
+    eqa.icursor(len(eq))
     tv.set(eq)
 
 
@@ -105,13 +106,6 @@ def saveEquation():
             file.write(str(eqa.get()))
     except:
         pass
-
-
-def angle(sign):
-    global eq
-    eq = eqa.get() + sign
-    tv.set(eq)
-
 
 def Rand():
     tv.set(eqa.get() + str(randrange(0, 9999999999)))
@@ -380,42 +374,87 @@ sqrN = Button(base2, text='^', width=5, command=lambda: key('^'), bg=bg_color_bt
 sqrN.grid(column=2, row=2)
 sqrN['font'] = font.Font(size=15)
 
-sin = Button(base2, text='sin', width=5, command=lambda: angle('sin('), bg=bg_color_btn, border=2, fg=fg_color_btn,
+sin = Button(base2, text='sin', width=5, command=lambda: key('sin('), bg=bg_color_btn, border=2, fg=fg_color_btn,
              activebackground=activebackground_color, activeforeground=activeforeground_color)
 sin.grid(column=0, row=3)
 sin['font'] = font.Font(size=15)
 
-cos = Button(base2, text='cos', width=5, command=lambda: angle('cos('), bg=bg_color_btn, border=2, fg=fg_color_btn,
+cos = Button(base2, text='cos', width=5, command=lambda: key('cos('), bg=bg_color_btn, border=2, fg=fg_color_btn,
              activebackground=activebackground_color, activeforeground=activeforeground_color)
 cos.grid(column=1, row=3)
 cos['font'] = font.Font(size=15)
 
-tan = Button(base2, text='tan', width=5, command=lambda: angle('tan('), bg=bg_color_btn, border=2, fg=fg_color_btn,
+tan = Button(base2, text='tan', width=5, command=lambda: key('tan('), bg=bg_color_btn, border=2, fg=fg_color_btn,
              activebackground=activebackground_color, activeforeground=activeforeground_color)
 tan.grid(column=2, row=3)
 tan['font'] = font.Font(size=15)
 
+asin = Button(base2, text='sin−¹', width=5, command=lambda: key('sin−¹('), bg=bg_color_btn, border=2, fg=fg_color_btn,
+             activebackground=activebackground_color, activeforeground=activeforeground_color)
+asin.grid(column=0, row=4)
+asin['font'] = font.Font(size=15)
+
+acos = Button(base2, text='cos−¹', width=5, command=lambda: key('cos−¹('), bg=bg_color_btn, border=2, fg=fg_color_btn,
+             activebackground=activebackground_color, activeforeground=activeforeground_color)
+acos.grid(column=1, row=4)
+acos['font'] = font.Font(size=15)
+
+atan = Button(base2, text='tan−¹', width=5, command=lambda: key('tan−¹('), bg=bg_color_btn, border=2, fg=fg_color_btn,
+             activebackground=activebackground_color, activeforeground=activeforeground_color)
+atan.grid(column=2, row=4)
+atan['font'] = font.Font(size=15)
+
+sinh = Button(base2, text='sinh', width=5, command=lambda: key('sinh('), bg=bg_color_btn, border=2, fg=fg_color_btn,
+             activebackground=activebackground_color, activeforeground=activeforeground_color)
+sinh.grid(column=0, row=5)
+sinh['font'] = font.Font(size=15)
+
+cosh = Button(base2, text='cosh', width=5, command=lambda: key('cosh('), bg=bg_color_btn, border=2, fg=fg_color_btn,
+             activebackground=activebackground_color, activeforeground=activeforeground_color)
+cosh.grid(column=1, row=5)
+cosh['font'] = font.Font(size=15)
+
+tanh = Button(base2, text='tanh', width=5, command=lambda: key('tanh('), bg=bg_color_btn, border=2, fg=fg_color_btn,
+             activebackground=activebackground_color, activeforeground=activeforeground_color)
+tanh.grid(column=2, row=5)
+tanh['font'] = font.Font(size=15)
+
+asinh = Button(base2, text='sinh−¹', width=5, command=lambda: key('sinh−¹('), bg=bg_color_btn, border=2, fg=fg_color_btn,
+             activebackground=activebackground_color, activeforeground=activeforeground_color)
+asinh.grid(column=0, row=6)
+asinh['font'] = font.Font(size=15)
+
+acosh = Button(base2, text='cosh−¹', width=5, command=lambda: key('cosh−¹('), bg=bg_color_btn, border=2, fg=fg_color_btn,
+             activebackground=activebackground_color, activeforeground=activeforeground_color)
+acosh.grid(column=1, row=6)
+acosh['font'] = font.Font(size=15)
+
+atanh = Button(base2, text='tanh−¹', width=5, command=lambda: key('tanh−¹('), bg=bg_color_btn, border=2, fg=fg_color_btn,
+             activebackground=activebackground_color, activeforeground=activeforeground_color)
+atanh.grid(column=2, row=6)
+atanh['font'] = font.Font(size=15)
+
 
 binary = Button(base2, text='Binary', width=5, command=Binary, bg=bg_color_btn, border=2, fg=fg_color_btn,
                 activebackground=activebackground_color, activeforeground=activeforeground_color)
-binary.grid(column=0, row=4)
+binary.grid(column=0, row=7)
 binary['font'] = font.Font(size=15)
 
 Hexal = Button(base2, text='Hexal', width=5, command=Hexal, bg=bg_color_btn, border=2, fg=fg_color_btn,
                activebackground=activebackground_color, activeforeground=activeforeground_color)
-Hexal.grid(column=1, row=4)
+Hexal.grid(column=1, row=7)
 Hexal['font'] = font.Font(size=15)
 
 octal = Button(base2, text='Octal', width=5, command=Octal, bg=bg_color_btn, border=2, fg=fg_color_btn,
                activebackground=activebackground_color, activeforeground=activeforeground_color)
-octal.grid(column=2, row=4)
+octal.grid(column=2, row=7)
 octal['font'] = font.Font(size=15)
 
 space2 = Label(base2)
 space2.grid(column=3, row=0)
 space2.config(bg=bg_color)
 
-eql = Button(base0, text='=', height=8, width=5, command=eql, bg=bg_color_btn, border=2, fg=fg_color_btn,
+eql = Button(base0, text='=', height=13, width=5, command=eql, bg=bg_color_btn, border=2, fg=fg_color_btn,
              activebackground=activebackground_color, activeforeground=activeforeground_color)
 eql.grid(column=1, row=0)
 eql['font'] = font.Font(size=15)

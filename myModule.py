@@ -6,6 +6,7 @@ from tkinter import filedialog as fd
 from tkinter.messagebox import *
 from random import *
 from sys import *
+import numpy as np
 ##################################################################
 
 
@@ -69,17 +70,54 @@ def equal(z):
         x = (eval(e[0])*eval(e[1]))/100
         return str(round(x, 7))
 
-    elif 'sin' in eqa:
-        e = int(eqa.split('sin(')[1].split(')')[0])
-        return round(math.sin(math.pi/(e/5)), 7)
+    if 'sin(' in x:
+        num = int(x.split('sin(')[1].split(')')[0])
+        x = x.replace(f'sin({str(num)}', f'np.sin(np.deg2rad({str(num)})')
 
-    elif 'cos' in eqa:
-        e = int(eqa.split('cos(')[1].split(')')[0])
-        return round(math.cos(math.pi/(e/5)), 7)
 
-    elif 'tan' in eqa:
-        e = int(eqa.split('tan(')[1].split(')')[0])
-        return round(math.tan(math.pi/(e/5)), 7)
+    if 'cos(' in x:
+        num = int(x.split('cos(')[1].split(')')[0])
+        x = x.replace(f'cos({str(num)}', f'np.cos(np.deg2rad({str(num)})')
+
+    if 'tan(' in x:
+        num = int(x.split('tan(')[1].split(')')[0])
+        x = x.replace(f'tan({str(num)}', f'np.tan(np.deg2rad({str(num)})')
+
+    if 'sin−¹(' in x:
+        num = x.split('sin−¹(')[1].split(')')[0]
+        x = x.replace(f'sin−¹({str(num)}', f'np.degrees(np.arcsin(float({num}))')
+
+    if 'cos−¹(' in x:
+        num = x.split('cos−¹(')[1].split(')')[0]
+        x = x.replace(f'cos−¹({str(num)}', f'np.degrees(np.arccos(float({num}))')
+
+    if 'tan−¹(' in x:
+        num = x.split('tan−¹(')[1].split(')')[0]
+        x = x.replace(f'tan−¹({str(num)}', f'np.degrees(np.arctan(float({num}))')
+
+    if 'sinh(' in x:
+        num = int(x.split('sinh(')[1].split(')')[0])
+        x = x.replace(f'sinh({str(num)}', f'np.sinh(np.deg2rad({str(num)})')
+
+    if 'cosh(' in x:
+        num = int(x.split('cosh(')[1].split(')')[0])
+        x = x.replace(f'cosh({str(num)}', f'np.cosh(np.deg2rad({str(num)})')
+
+    if 'tanh(' in x:
+        num = int(x.split('tanh(')[1].split(')')[0])
+        x = x.replace(f'tanh({str(num)}', f'np.tanh(np.deg2rad({str(num)})')
+
+    if 'sinh−¹(' in x:
+        num = x.split('sinh−¹(')[1].split(')')[0]
+        x = x.replace(f'sinh−¹({str(num)}', f'np.degrees(np.arcsinh(float({num}))')
+
+    if 'cosh−¹(' in x:
+        num = x.split('cosh−¹(')[1].split(')')[0]
+        x = x.replace(f'cosh−¹({str(num)}', f'np.degrees(np.arccosh(float({num}))')
+
+    if 'tanh−¹(' in x:
+        num = x.split('tanh−¹(')[1].split(')')[0]
+        x = x.replace(f'tanh−¹({str(num)}', f'np.degrees(np.arctanh(float({num}))')
 
     res = eval(x)
     return str(round(res, 7))
