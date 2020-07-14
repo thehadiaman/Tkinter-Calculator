@@ -8,11 +8,11 @@ if platform == 'linux':
     app.maxsize(width='397', height='640')
     app.minsize(width='397', height='640')
 elif platform.startswith('win'):
-    app.maxsize(width='280', height='600')
-    app.minsize(width='280', height='600')
+    app.maxsize(width='280', height='520')
+    app.minsize(width='280', height='520')
 else:
-    app.maxsize(width='397', height='640')
-    app.minsize(width='397', height='640')
+    app.maxsize(width='355', height='520')
+    app.minsize(width='355', height='520')
 
 ##################################################################################################
 bg_color = get_bg_color()
@@ -73,7 +73,7 @@ def Octal():
 def eql():
     global eq
     x = eqa.get().replace('<', '').replace(' ', '')
-    e = bracket(root(pipi(ee(epi(final(x))))))
+    e = bracket(root(pipi(ee(epi(final(ang(x)))))))
 
     if e == '':
         tv.set('')
