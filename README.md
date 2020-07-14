@@ -17,8 +17,13 @@ I have also included the images of the output in /Images
 I hope you can follow the instrctions, thank you
 ####################################################################################
 Libraries used
+
 math    :preinstalled in python
+
 tkinter :preinstalled in python
+
 random  :preinstalled in python
+
 sys     :preinstalled in python
+
 numpy   :not preinstalled in python
