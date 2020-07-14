@@ -8,11 +8,11 @@ if platform == 'linux':
     app.maxsize(width='397', height='640')
     app.minsize(width='397', height='640')
 elif platform.startswith('win'):
-    app.maxsize(width='280', height='520')
-    app.minsize(width='280', height='520')
+    app.maxsize(width='280', height='600')
+    app.minsize(width='280', height='600')
 else:
-    app.maxsize(width='355', height='520')
-    app.minsize(width='355', height='520')
+    app.maxsize(width='397', height='640')
+    app.minsize(width='397', height='640')
 
 ##################################################################################################
 bg_color = get_bg_color()
