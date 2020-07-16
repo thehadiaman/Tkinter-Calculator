@@ -373,7 +373,7 @@ def ang(X):
             return zz
 
     def angall(x):
-        L = ['s', 'c', 't', ')', '(', '√', 'e', 'π']
+        L = ['s', 'c', 't', ')', '(', 'e', 'π']
         for a in L:
             for b in L:
                 if a+b in x:
