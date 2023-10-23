@@ -164,9 +164,7 @@ def credit():
     app.maxsize(width='650', height='150')
     app.minsize(width='650', height='150')
     app.config(bg='#042000')
-    l = Label(app, text='This is my first project on python tkinter I tried to make it better,there is only one organiz'
-                        'ation\ni give all the credit to That is CROSS_ROAD and the motive behind the project is to acc'
-                        'ept and\ncomplete the challenge of our teacher Nikhil sir', justify=LEFT)
+    l = Label(app, text='This is my first project on python tkinter I tried to make it better ♥️', justify=LEFT)
     l.place(x=0, y=0)
     l.config(bg='#042000')
     app.mainloop()
